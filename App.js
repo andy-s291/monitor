@@ -1,21 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+// import React navigation dan screen lain
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import HomeScreen from './src/screens/HomeScreen';
+import EmergencyScreen from './src/screens/EmergencyScreen';
+import CreateIssueScreen from './src/screens/CreateIssueScreen';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+// membuat stack navigator
+const navigator = createStackNavigator(
+  {
+    // membuat navigation ke screens
+    Home: HomeScreen,
+    Emergency: EmergencyScreen,
+    CreateIssue: CreateIssueScreen,
   },
-});
+  {
+    // set initial page to home screen
+    initialRouteName: 'Home',
+  },
+);
+
+// export app container
+export default createAppContainer(navigator);
