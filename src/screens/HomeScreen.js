@@ -39,7 +39,7 @@ const HomeScreen = ({ navigation }) => {
             containerStyle={{ position: 'absolute', top: -15, right: 10 }}
             value="2"
             status="warning"
-            badgeStyle={{ height: 35, width: 35, borderRadius: 20 }}
+            badgeStyle={{ height: 35, width: 35, borderRadius: 20, backgroundColor:'yellow' }}
             textStyle={{ fontSize: 20, color: 'black', fontWeight: 'bold' }}
           /> : null
         }
