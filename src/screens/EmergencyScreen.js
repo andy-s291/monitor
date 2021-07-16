@@ -63,7 +63,7 @@ const EmergencyScreen = ({ navigation }) => {
             <Text style={styles.ModalHeaderText1}>Room Name</Text>
             <Text style={styles.ModalHeaderText2}>Id number</Text>
           </View>
-          <Entypo name="warning" size={120} color="black" style={{ marginTop: 10 }} />
+          <Image source={require('../../assets/warning-icon.png')} style={styles.icon} />
           <Text style={styles.ModalBodyText1}>WARNING!</Text>
           <Text style={styles.ModalBodyText2}>IV Fluids Almost Runs Out</Text>
         </View>
@@ -176,6 +176,10 @@ const styles = StyleSheet.create({
     width: "50%",
     alignSelf: 'center',
     bottom: 50
+  },
+  icon:{
+    height: 120,
+    width:120
   }
 });
 
