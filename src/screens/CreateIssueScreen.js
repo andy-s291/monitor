@@ -1,9 +1,15 @@
 //import react dan yang lain yang dibutuhkan
 import React, { useState } from 'react';
 import { Button } from 'react-native-elements';
-import { Text, StyleSheet, TouchableOpacity, TextInput, Image } from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, TextInput, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { FontAwesome5, Entypo } from '@expo/vector-icons';
+
+const DismissKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
 
 //membuat create issue screen
 const CreateIssueScreen = ({ navigation }) => {
@@ -12,38 +18,44 @@ const CreateIssueScreen = ({ navigation }) => {
   const [keterangan, setKeterangan] = useState('');
 
   return (
-    <SafeAreaView style={styles.screen}>
-      <Text style={styles.label}>Keterangan </Text>
-      
-      {/* membuat textbox */}
-      <TextInput
-        multiline
-        placeholder="Type something here..."
-        backgroundColor="white"
-        value={keterangan}
-        onChangeText={setKeterangan}
-        style={styles.input}
-      />
+    <DismissKeyboard>
+      <SafeAreaView style={styles.screen}>
+        <Text style={styles.label}>Keterangan </Text>
 
-      <SafeAreaView style={{ flexDirection: 'row' }}>
-        <Entypo name="attachment" size={24} color="white" style={styles.picture} />
-        <Text style={styles.label2}>Attachment</Text>
+        {/* membuat textbox */}
+        <TextInput
+          multiline
+          placeholder="Type something here..."
+          backgroundColor="white"
+          value={keterangan}
+          onChangeText={setKeterangan}
+          style={styles.input}
+        />
+
+        <SafeAreaView style={{ flexDirection: 'row' }}>
+          <Entypo name="attachment" size={24} color="white" style={styles.picture} />
+          <Text style={styles.label2}>Attachment</Text>
+        </SafeAreaView>
+
+        {/* membuat no file attached touchable */}
+        <TouchableOpacity >
+          <Text style={styles.file}>
+            No File attached
+          </Text>
+        </TouchableOpacity>
+
+        {/* membuat submit button */}
+        <TouchableOpacity style={styles.button2}>
+          <Text style={styles.text2}>
+            Submit
+          </Text>
+        </TouchableOpacity>
+
+        {/* Tambah logo */}
+        <Image source={require('../../assets/byonLogo.png')} style={styles.logo} />
+
       </SafeAreaView>
-
-      {/* membuat no file attached touchable */}
-      <TouchableOpacity >
-        <Text style={styles.file}>
-          No File attached
-        </Text>
-      </TouchableOpacity>
-
-      {/* membuat submit button */}
-      <Button title="Submit" buttonStyle={styles.button2} titleStyle={styles.text2} />
-
-      {/* Tambah logo */}
-      <Image source={require('../../assets/byonLogo.png')} style={styles.logo} />
-
-    </SafeAreaView>
+    </DismissKeyboard>
   );
 };
 
@@ -137,22 +149,24 @@ const styles = StyleSheet.create({
   },
   button2: {
     borderRadius: 30,
-    width: '50%',
-    height: '40%',
+    width: 175,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: 30,
-    backgroundColor: '#0000b3'
+    marginTop: 80,
+    backgroundColor: '#0000b3',
   },
   text2: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: 'white',
+    fontSize: 20
   },
   logo: {
     height: "5%",
     width: "50%",
     alignSelf: 'center',
-    bottom: 50
+    bottom: -130
   }
 });
 
