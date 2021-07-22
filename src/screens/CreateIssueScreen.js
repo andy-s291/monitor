@@ -4,6 +4,7 @@ import { Button } from 'react-native-elements';
 import { Text, StyleSheet, TouchableOpacity, TextInput, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import { FontAwesome5, Entypo } from '@expo/vector-icons';
+import { useFonts } from 'expo-font';
 
 const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -16,6 +17,15 @@ const CreateIssueScreen = ({ navigation }) => {
 
   //set keterangan state
   const [keterangan, setKeterangan] = useState('');
+
+  //import poppins regular font
+  const [loaded] = useFonts({
+    Poppins_Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
+  });
+
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <DismissKeyboard>
@@ -89,19 +99,24 @@ const styles = StyleSheet.create({
     fontSize: 40,
     marginLeft: 20,
     color: "white",
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: "Poppins_Bold"
   },
   label: {
     fontSize: 25,
     color: "white",
     fontWeight: 'bold',
-    marginLeft: 20
+    marginLeft: 20,
+    fontFamily: "Poppins_Bold"
+
   },
   label2: {
     fontSize: 25,
     color: "white",
     fontWeight: 'bold',
-    marginLeft: 5
+    marginLeft: 5,
+    fontFamily: "Poppins_Bold"
+
   },
   screen: {
     backgroundColor: '#001133',
@@ -122,13 +137,17 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginLeft: 5,
     color: "white",
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: "Poppins_Bold"
+
   },
   input: {
     height: 150,
     width: '90%',
     borderRadius: 20,
-    margin: 20
+    margin: 20,
+    fontFamily: "Poppins_Bold"
+
   },
   picture: {
     marginLeft: 20
@@ -145,7 +164,9 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: 'white',
     marginTop: 10,
-    marginLeft: 40
+    marginLeft: 40,
+    fontFamily: "Poppins_Bold"
+
   },
   button2: {
     borderRadius: 30,
@@ -156,17 +177,22 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 80,
     backgroundColor: '#0000b3',
+    fontFamily: "Poppins_Bold"
+
   },
   text2: {
     fontWeight: 'bold',
     color: 'white',
-    fontSize: 20
+    fontSize: 20,
+    fontFamily: "Poppins_Bold"
+
   },
   logo: {
     height: "5%",
     width: "50%",
     alignSelf: 'center',
-    bottom: -130
+    bottom: -130,
+
   }
 });
 

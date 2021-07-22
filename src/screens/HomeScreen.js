@@ -4,6 +4,7 @@ import { Text, View, StyleSheet, TouchableOpacity, Image, Switch } from 'react-n
 import { Badge, withBadge } from 'react-native-elements'
 import { SafeAreaView } from 'react-navigation';
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
+import { useFonts } from 'expo-font';
 
 // membuat component Home Screen
 const HomeScreen = ({ navigation }) => {
@@ -14,6 +15,14 @@ const HomeScreen = ({ navigation }) => {
     setIsEnabled(previousState => !previousState);
   };
 
+  //import font
+  const [loaded] = useFonts({
+    Poppins_Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
+  });
+
+  if (!loaded) {
+    return null;
+  }
 
   return (
     //membuat background screen
@@ -91,7 +100,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 5,
     color: "white",
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: "Poppins_Bold"
   },
   screen: {
     backgroundColor: '#001133',

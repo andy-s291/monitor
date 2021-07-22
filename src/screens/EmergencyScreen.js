@@ -5,6 +5,7 @@ import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import { FontAwesome5, Entypo } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
+import { useFonts } from 'expo-font';
 
 // membuat mock date variable
 var currDate = new Date();
@@ -33,6 +34,15 @@ const EmergencyScreen = ({ navigation }) => {
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
+
+  //import poppins regular font
+  const [loaded] = useFonts({
+    Poppins_Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
+  });
+
+  if (!loaded) {
+    return null;
+  }
 
   return (
     // membuat list 
@@ -101,11 +111,13 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginLeft: 10,
     color: "white",
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: "Poppins_Bold"
   },
   screen: {
     backgroundColor: '#001133',
-    flex: 1
+    flex: 1,
+    fontFamily: "Poppins_Bold"
   },
   button: {
     width: '100%',
@@ -153,23 +165,31 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: 'white',
     fontWeight: 'bold',
-    marginTop: 15
+    marginTop: 15,
+    fontFamily: "Poppins_Bold"
+
   },
   ModalHeaderText2: {
     fontSize: 20,
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 24
+    fontSize: 24,
+    fontFamily: "Poppins_Bold"
+
   },
   ModalBodyText1: {
     fontWeight: 'bold',
     color: 'red',
-    fontSize: 30
+    fontSize: 30,
+    fontFamily: "Poppins_Bold"
+
   },
   ModalBodyText2: {
     fontWeight: 'bold',
     color: 'red',
-    fontSize: 15
+    fontSize: 15,
+    fontFamily: "Poppins_Bold"
+
   },
   logo: {
     height: "5%",
@@ -177,7 +197,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     bottom: 50
   },
-  icon:{
+  icon: {
     height: 110,
     width: 125,
     marginTop: 20
