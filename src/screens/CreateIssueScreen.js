@@ -99,13 +99,11 @@ const styles = StyleSheet.create({
     fontSize: 40,
     marginLeft: 20,
     color: "white",
-    fontWeight: 'bold',
     fontFamily: "Poppins_Bold"
   },
   label: {
     fontSize: 25,
     color: "white",
-    fontWeight: 'bold',
     marginLeft: 20,
     fontFamily: "Poppins_Bold"
 
@@ -113,7 +111,6 @@ const styles = StyleSheet.create({
   label2: {
     fontSize: 25,
     color: "white",
-    fontWeight: 'bold',
     marginLeft: 5,
     fontFamily: "Poppins_Bold"
 
@@ -137,7 +134,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginLeft: 5,
     color: "white",
-    fontWeight: 'bold',
     fontFamily: "Poppins_Bold"
 
   },
@@ -160,7 +156,6 @@ const styles = StyleSheet.create({
   },
   file: {
     fontStyle: 'italic',
-    fontWeight: 'bold',
     fontSize: 15,
     color: 'white',
     marginTop: 10,
@@ -181,7 +176,6 @@ const styles = StyleSheet.create({
 
   },
   text2: {
-    fontWeight: 'bold',
     color: 'white',
     fontSize: 20,
     fontFamily: "Poppins_Bold"
@@ -191,7 +185,7 @@ const styles = StyleSheet.create({
     height: "5%",
     width: "50%",
     alignSelf: 'center',
-    bottom: -130,
+    bottom: -110,
 
   }
 });

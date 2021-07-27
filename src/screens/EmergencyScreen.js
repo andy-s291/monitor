@@ -111,7 +111,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     marginLeft: 10,
     color: "white",
-    fontWeight: 'bold',
     fontFamily: "Poppins_Bold"
   },
   screen: {
@@ -142,7 +141,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     color: 'white',
-    fontWeight: 'bold',
     fontFamily: "Poppins_Bold"
   },
   ModalBackground1: {
@@ -165,7 +163,6 @@ const styles = StyleSheet.create({
   ModalHeaderText1: {
     fontSize: 24,
     color: 'white',
-    fontWeight: 'bold',
     marginTop: 15,
     fontFamily: "Poppins_Bold"
 
@@ -173,20 +170,17 @@ const styles = StyleSheet.create({
   ModalHeaderText2: {
     fontSize: 20,
     color: 'white',
-    fontWeight: 'bold',
     fontSize: 24,
     fontFamily: "Poppins_Bold"
 
   },
   ModalBodyText1: {
-    fontWeight: 'bold',
     color: 'red',
     fontSize: 30,
     fontFamily: "Poppins_Bold"
 
   },
   ModalBodyText2: {
-    fontWeight: 'bold',
     color: 'red',
     fontSize: 15,
     fontFamily: "Poppins_Bold"

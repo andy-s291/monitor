@@ -100,7 +100,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 5,
     color: "white",
-    fontWeight: 'bold',
     fontFamily: "Poppins_Bold"
   },
   screen: {
