@@ -142,7 +142,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     color: 'white',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontFamily: "Poppins_Bold"
   },
   ModalBackground1: {
     backgroundColor: 'white',
