@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image, Switch } from 'react-native';
 import { Badge, withBadge } from 'react-native-elements'
 import { SafeAreaView } from 'react-navigation';
-import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons, AntDesign, Entypo } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 
 // membuat component Home Screen
@@ -59,7 +59,7 @@ const HomeScreen = ({ navigation }) => {
 
       {/* Membuat create issue button */}
       <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('CreateIssue')}>
-        <AntDesign name="exclamationcircleo" size={24} color="black" />
+        <AntDesign name="exclamationcircle" size={24} color="black" />
         <Text style={styles.text}>Create Issue</Text>
       </TouchableOpacity>
 

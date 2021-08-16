@@ -4,6 +4,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import HomeScreen from './src/screens/HomeScreen';
 import EmergencyScreen from './src/screens/EmergencyScreen';
 import CreateIssueScreen from './src/screens/CreateIssueScreen';
+import LoginScreen from './src/screens/LoginScreen';
 
 // membuat stack navigator
 const navigator = createStackNavigator(
@@ -12,10 +13,11 @@ const navigator = createStackNavigator(
     Home: HomeScreen,
     Emergency: EmergencyScreen,
     CreateIssue: CreateIssueScreen,
+    Login : LoginScreen,
   },
   {
     // set initial page to home screen
-    initialRouteName: 'Home',
+    initialRouteName: 'Login',
   },
 );
 

@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     marginTop: 80,
-    backgroundColor: '#0000b3',
+    backgroundColor: '#4d79ff',
     fontFamily: "Poppins_Bold"
 
   },
