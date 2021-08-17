@@ -67,7 +67,7 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.text}>Emergency</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CreateIssue')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('AllData')}>
         <Entypo name="database" size={24} color="#001133" />
         <Text style={styles.text}>All Data</Text>
       </TouchableOpacity>
