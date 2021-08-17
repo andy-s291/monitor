@@ -95,12 +95,6 @@ CreateIssueScreen.navigationOptions = ({ navigation }) => {
 
 //membuat styles
 const styles = StyleSheet.create({
-  text: {
-    fontSize: 40,
-    marginLeft: 20,
-    color: "white",
-    fontFamily: "Poppins_Bold"
-  },
   label: {
     fontSize: 25,
     color: "white",
@@ -171,7 +165,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     marginTop: 80,
-    backgroundColor: '#4d79ff',
+    backgroundColor: '#002b80',
     fontFamily: "Poppins_Bold"
 
   },

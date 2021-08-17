@@ -1,6 +1,6 @@
 // import react native dan import lain yang dibutuhkan 
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image, Switch } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image, TouchableHighlight } from 'react-native';
 import { Badge, withBadge } from 'react-native-elements'
 import { SafeAreaView } from 'react-navigation';
 import { MaterialCommunityIcons, AntDesign, Entypo } from '@expo/vector-icons';
@@ -11,13 +11,21 @@ const HomeScreen = ({ navigation }) => {
 
   //set switch state dan buat function untuk switch
   const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => {
-    setIsEnabled(previousState => !previousState);
+  // setIsEnabled(previousState => !previousState);
+
+  var touchProps = {
+    activeOpacity: 1,
+    // underlayColor: 'blue',                               // <-- "backgroundColor" will be always overwritten by "underlayColor"
+    style: isEnabled ? styles.btnPress : styles.btnNormal, // <-- but you can still apply other style changes
+    // onHideUnderlay: () => setIsPress(false),
+    // onShowUnderlay: () => setIsPress(true),
+    onPress: () => setIsEnabled(previousState => !previousState),                 // <-- "onPress" is apparently required
   };
 
   //import font
   const [loaded] = useFonts({
     Poppins_Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
+    Poppins_Regular: require('../../assets/fonts/Poppins-Regular.ttf'),
   });
 
   if (!loaded) {
@@ -29,36 +37,43 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView style={styles.screen}>
       {/*membuat switch sama apply styling*/}
       <View style={styles.switch}>
-        <Switch
+        {/* <Switch
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
           value={isEnabled}
-        />
+        /> */}
+        <TouchableHighlight {...touchProps}>
+          <Text></Text>
+        </TouchableHighlight>
+        {isEnabled ? <Text style={styles.btnText}>On-Shift</Text> : <Text style={styles.btnText}>Off-Shift</Text>}
       </View>
 
       {/* Tambah logo */}
       <Image source={require('../../assets/byonLogo.png')} style={styles.logo} />
 
       {/* Membuat Emergency button */}
-      <TouchableOpacity style={styles.button1} onPress={() => navigation.navigate('Emergency')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Emergency')}>
 
         {/* Tamabah Badge */}
-        {
-          isEnabled ? <Badge
-            containerStyle={{ position: 'absolute', top: -15, right: 10 }}
-            value="2"
-            status="warning"
-            badgeStyle={{ height: 35, width: 35, borderRadius: 20 }}
-            textStyle={{ fontSize: 20, color: 'black', fontWeight: 'bold' }}
-          /> : null
-        }
+        <Badge
+          containerStyle={{ position: 'absolute', top: -15, right: 10 }}
+          value="2"
+          status="error"
+          badgeStyle={{ height: 35, width: 35, borderRadius: 20 }}
+          textStyle={{ fontSize: 20, color: 'white', fontWeight: 'bold' }}
+        />
 
-        <MaterialCommunityIcons name="alarm-light-outline" size={24} color="white" />
+        <MaterialCommunityIcons name="alarm-light-outline" size={24} color="#001133" />
         <Text style={styles.text}>Emergency</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CreateIssue')}>
+        <Entypo name="database" size={24} color="#001133" />
+        <Text style={styles.text}>All Data</Text>
+      </TouchableOpacity>
+
       {/* Membuat create issue button */}
-      <TouchableOpacity style={styles.button2} onPress={() => navigation.navigate('CreateIssue')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('CreateIssue')}>
         <AntDesign name="exclamationcircle" size={24} color="black" />
         <Text style={styles.text}>Create Issue</Text>
       </TouchableOpacity>
@@ -74,7 +89,7 @@ HomeScreen.navigationOptions = {
 
 //Buat styles untuk components
 const styles = StyleSheet.create({
-  button1: {
+  button: {
     width: '80%',
     height: 50,
     justifyContent: 'center',
@@ -82,25 +97,14 @@ const styles = StyleSheet.create({
     marginTop: 30,
     marginLeft: 35,
     borderRadius: 10,
-    backgroundColor: 'red',
-    flexDirection: 'row'
-  },
-  button2: {
-    width: '80%',
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
-    marginLeft: 35,
-    borderRadius: 10,
-    backgroundColor: '#00ff00',
+    backgroundColor: 'white',
     flexDirection: 'row'
   },
   text: {
     fontSize: 20,
     marginLeft: 5,
-    color: "white",
-    fontFamily: "Poppins_Bold"
+    color: "#001133",
+    fontFamily: "Poppins_Bold",
   },
   screen: {
     backgroundColor: '#001133',
@@ -117,6 +121,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignSelf: 'flex-end',
     margin: 30,
+  },
+  btnNormal: {
+    backgroundColor: 'red',
+    borderWidth: 1,
+    borderRadius: 400,
+    height: 50,
+    width: 50,
+  },
+  btnPress: {
+    backgroundColor: 'green',
+    borderWidth: 1,
+    borderRadius: 400,
+    height: 50,
+    width: 50,
+  },
+  btnText: {
+    fontFamily: "Poppins_Regular",
+    color: "white",
+    fontSize: 15,
+    marginTop: 5,
   }
 });
 
