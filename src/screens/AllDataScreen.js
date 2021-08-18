@@ -10,17 +10,44 @@ import { useFonts } from 'expo-font';
 // membuat mock date variable
 var currDate = new Date();
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 // mock data
-const patients = [
+const emergency_patients = [
   {
     name: 'Melati',
     id: 'ME02',
-    date: currDate.getDate() + "/" + currDate.getMonth() + "/" + currDate.getFullYear() + " " + currDate.getHours() + ":" + currDate.getMinutes()
+    date: currDate.getDate() + " " + monthNames[currDate.getMonth()] + " " + currDate.getFullYear() + "\n" + currDate.getHours() + ":" + currDate.getMinutes()
   },
   {
     name: 'Mawar',
     id: 'MA01',
-    date: currDate.getDate() + "/" + currDate.getMonth() + "/" + currDate.getFullYear() + " " + currDate.getHours() + ":" + currDate.getMinutes()
+    date: currDate.getDate() + " " + monthNames[currDate.getMonth()] + " " + currDate.getFullYear() + "\n" + currDate.getHours() + ":" + currDate.getMinutes()
+  }
+]
+
+const patients = [
+  {
+    name: 'Melati',
+    id: 'ME02',
+    date: currDate.getDate() + " " + monthNames[currDate.getMonth()] + " " + currDate.getFullYear() + "\n" + currDate.getHours() + ":" + currDate.getMinutes()
+  },
+  {
+    name: 'Mawar',
+    id: 'MA01',
+    date: currDate.getDate() + " " + monthNames[currDate.getMonth()] + " " + currDate.getFullYear() + "\n" + currDate.getHours() + ":" + currDate.getMinutes()
+  },
+  {
+    name: 'Dahlia',
+    id: 'DA01',
+    date: currDate.getDate() + " " + monthNames[currDate.getMonth()] + " " + currDate.getFullYear() + "\n" + currDate.getHours() + ":" + currDate.getMinutes()
+  },
+  {
+    name: 'Dahlia',
+    id: 'DA02',
+    date: currDate.getDate() + " " + monthNames[currDate.getMonth()] + " " + currDate.getFullYear() + "\n" + currDate.getHours() + ":" + currDate.getMinutes()
   }
 ]
 
@@ -44,6 +71,12 @@ const AllDataScreen = ({ navigation }) => {
     return null;
   }
 
+  function patientExists(id) {
+    return emergency_patients.some(function(el) {
+      return el.id === id;
+    }); 
+  }
+
   return (
     // membuat list 
     <SafeAreaView style={styles.screen}>
@@ -54,8 +87,16 @@ const AllDataScreen = ({ navigation }) => {
           return (
             <TouchableOpacity onPress={() => toggleModal()}>
               <View style={styles.row}>
-                <Text style={styles.title}>{item.name} - {item.id}</Text>
-                <Text style={styles.title}>{item.date}</Text>
+                
+                {patientExists(item.id) ?
+                  <Text style={styles.emergency_title}>{item.name} - {item.id}</Text>
+                  : <Text style={styles.normal_title}>{item.name} - {item.id}</Text>}
+
+                {patientExists(item.id) ?
+                  <Text style={styles.emergency_title}>{item.date}</Text>
+                  : <Text style={styles.normal_title}>{item.date}</Text>}
+                {/* <Text style={styles.emergency_title}>{item.name} - {item.id}</Text>
+                <Text style={styles.emergency_title}>{item.date}</Text> */}
               </View>
             </TouchableOpacity>
           )
@@ -138,7 +179,12 @@ const styles = StyleSheet.create({
     borderColor: 'gray'
   },
 
-  title: {
+  emergency_title: {
+    fontSize: 18,
+    color: 'red',
+    fontFamily: "Poppins_Bold"
+  },
+  normal_title: {
     fontSize: 18,
     color: 'white',
     fontFamily: "Poppins_Bold"
