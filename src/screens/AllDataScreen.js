@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
-import { FontAwesome5, Entypo } from '@expo/vector-icons';
-import Modal from 'react-native-modal';
+import { FontAwesome5} from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 
 // membuat mock date variable
@@ -54,14 +53,6 @@ const patients = [
 // membuat emergency screen
 const AllDataScreen = ({ navigation }) => {
 
-  // set modal false
-  const [isModalVisible, setModalVisible] = useState(false);
-
-  // set toggle modal
-  const toggleModal = () => {
-    setModalVisible(!isModalVisible);
-  };
-
   //import poppins regular font
   const [loaded] = useFonts({
     Poppins_Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
@@ -85,7 +76,7 @@ const AllDataScreen = ({ navigation }) => {
         data={patients}
         renderItem={({ item }) => {
           return (
-            <TouchableOpacity onPress={() => toggleModal()}>
+            <TouchableOpacity onPress={() => navigation.navigate('Show')}>
               <View style={styles.row}>
                 
                 {patientExists(item.id) ?
@@ -102,23 +93,7 @@ const AllDataScreen = ({ navigation }) => {
           )
         }}
       />
-
-      {/* membuat pop up */}
-      <Modal
-        isVisible={isModalVisible}
-        onBackdropPress={() => setModalVisible(false)}>
-        <View style={styles.ModalBackground1}>
-
-          {/* membuat popup header */}
-          <View style={styles.ModalBackground2}>
-            <Text style={styles.ModalHeaderText1}>Room Name</Text>
-            <Text style={styles.ModalHeaderText2}>Id number</Text>
-          </View>
-          <Image source={require('../../assets/warning-icon.png')} style={styles.icon} />
-          <Text style={styles.ModalBodyText1}>WARNING!</Text>
-          <Text style={styles.ModalBodyText2}>IV Fluids Almost Runs Out</Text>
-        </View>
-      </Modal>
+      
 
       <Image source={require('../../assets/byonLogo.png')} style={styles.logo} />
     </SafeAreaView>

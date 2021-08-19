@@ -6,6 +6,7 @@ import EmergencyScreen from './src/screens/EmergencyScreen';
 import CreateIssueScreen from './src/screens/CreateIssueScreen';
 import LoginScreen from './src/screens/LoginScreen';
 import AllDataScreen from './src/screens/AllDataScreen';
+import ShowScreen from './src/screens/ShowScreen';
 
 // membuat stack navigator
 const navigator = createStackNavigator(
@@ -16,6 +17,7 @@ const navigator = createStackNavigator(
     CreateIssue: CreateIssueScreen,
     Login : LoginScreen,
     AllData: AllDataScreen,
+    Show: ShowScreen,
   },
   {
     // set initial page to home screen
