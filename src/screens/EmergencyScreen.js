@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
 
   title: {
     fontSize: 18,
-    color: 'white',
+    color: 'red',
     fontFamily: "Poppins_Bold"
   },
   ModalBackground1: {

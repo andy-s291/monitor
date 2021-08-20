@@ -4,58 +4,105 @@ import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import Spacer from '../components/Spacer';
 
 const ShowScreen = ({ navigation }) => {
 
   const [loaded] = useFonts({
     Poppins_Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
+    Poppins_Regular: require('../../assets/fonts/Poppins-Regular.ttf'),
   });
+
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.row}>
-        <Text style={styles.text}>
+        <Text style={styles.header}>
           Information
         </Text>
-        <Text style={styles.text}>
+        <Text style={styles.header}>
           History
         </Text>
       </View>
 
-      <Text style={styles.text}>
-        Patient Name      : Budi
+      <Text style={styles.content}>
+        Patient Name           :  Budi
       </Text>
-      <Text style={styles.text}>
-        Organ Volume      : 64,4mL
+
+      <Spacer />
+
+      <Text style={styles.content}>
+        Organ Volume         :  64,4mL
       </Text>
-      <Text style={styles.text}>
-        Infuse Volume     : 489mL
+
+      <Spacer />
+
+      <Text style={styles.content}>
+        Infuse Volume          :  489mL
       </Text>
-      <Text style={styles.text}>
-        Body Temperature  : 37°C
+
+      <Spacer />
+
+      <Text style={styles.content}>
+        Body Temperature  :  37°C
       </Text>
-      <Text style={styles.text}>
-        Heart Rate        : 82 BPM
+
+      <Spacer />
+
+      <Text style={styles.content}>
+        Heart Rate                 :  82 BPM
       </Text>
-      <Text style={styles.text}>
-        Infuse Condition  : OK
+
+      <Spacer />
+
+      <Text style={styles.content}>
+        Infuse Condition      :  OK
       </Text>
 
       <TouchableOpacity style={styles.button2}>
-        <Text style={styles.text2}>
-          Submit
+        <Text style={styles.button_text}>
+          Request Hospital Discharge
         </Text>
       </TouchableOpacity>
     </SafeAreaView>
   )
 }
 
+ShowScreen.navigationOptions = ({ navigation }) => {
+  return {
+    title: '',
+    headerStyle: {
+      backgroundColor: '#001133'
+    },
+    // membuat button untuk balik home page
+    headerLeft: () => (
+      <Button
+        icon={<FontAwesome5 name="chevron-left" size={24} color="white" />}
+        title="Dahlia - DA01"
+        buttonStyle={styles.button}
+        titleStyle={styles.title}
+        type='clear'
+        onPress={() => navigation.navigate('AllData')}
+      />
+    )
+  };
+};
+
 const styles = StyleSheet.create({
-  text: {
+  header: {
     fontSize: 25,
     marginLeft: 10,
     color: "white",
     fontFamily: "Poppins_Bold",
+  },
+  content: {
+    fontSize: 25,
+    marginLeft: 10,
+    color: "white",
+    fontFamily: "Poppins_Regular",
   },
   screen: {
     backgroundColor: '#001133',
@@ -73,7 +120,7 @@ const styles = StyleSheet.create({
   },
   button2: {
     borderRadius: 30,
-    width: 175,
+    width: 300,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
@@ -83,11 +130,32 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins_Bold"
 
   },
-  text2: {
+  button_text: {
+    color: 'white',
+    fontSize:18,
+    fontFamily: "Poppins_Regular"
+  },
+  text: {
     color: 'white',
     fontSize: 20,
     fontFamily: "Poppins_Bold"
-
+  },
+  title: {
+    color: 'white',
+    fontSize: 25,
+    fontFamily: "Poppins_Bold",
+    marginLeft: 10
+  },
+  button: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    backgroundColor: '#001133',
+    flexDirection: 'row',
+    marginLeft: 20,
+    marginBottom: 10
   },
 });
 

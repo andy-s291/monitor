@@ -1,7 +1,7 @@
 // import react native dan import lain yang dibutuhkan 
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image, TouchableHighlight } from 'react-native';
-import { Badge, withBadge } from 'react-native-elements'
+import { Badge, withBadge } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import { MaterialCommunityIcons, AntDesign, Entypo } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
@@ -15,10 +15,7 @@ const HomeScreen = ({ navigation }) => {
 
   var touchProps = {
     activeOpacity: 1,
-    // underlayColor: 'blue',                               // <-- "backgroundColor" will be always overwritten by "underlayColor"
     style: isEnabled ? styles.btnPress : styles.btnNormal, // <-- but you can still apply other style changes
-    // onHideUnderlay: () => setIsPress(false),
-    // onShowUnderlay: () => setIsPress(true),
     onPress: () => setIsEnabled(previousState => !previousState),                 // <-- "onPress" is apparently required
   };
 
@@ -30,18 +27,13 @@ const HomeScreen = ({ navigation }) => {
 
   if (!loaded) {
     return null;
-  }
+  };
 
   return (
     //membuat background screen
     <SafeAreaView style={styles.screen}>
       {/*membuat switch sama apply styling*/}
       <View style={styles.switch}>
-        {/* <Switch
-          ios_backgroundColor="#3e3e3e"
-          onValueChange={toggleSwitch}
-          value={isEnabled}
-        /> */}
         <TouchableHighlight {...touchProps}>
           <Text></Text>
         </TouchableHighlight>
