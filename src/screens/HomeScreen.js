@@ -5,9 +5,17 @@ import { Badge, withBadge } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import { MaterialCommunityIcons, AntDesign, Entypo } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
+import Modal from 'react-native-modal';
 
 // membuat component Home Screen
 const HomeScreen = ({ navigation }) => {
+
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  // set toggle modal
+  const toggleModal = () => {
+    setModalVisible(!isEnabled);
+  };
 
   //set switch state dan buat function untuk switch
   const [isEnabled, setIsEnabled] = useState(false);
@@ -16,7 +24,7 @@ const HomeScreen = ({ navigation }) => {
   var touchProps = {
     activeOpacity: 1,
     style: isEnabled ? styles.btnPress : styles.btnNormal, // <-- but you can still apply other style changes
-    onPress: () => setIsEnabled(previousState => !previousState),                 // <-- "onPress" is apparently required
+    onPress: () => {setIsEnabled(previousState => !previousState); toggleModal();},                 // <-- "onPress" is apparently required
   };
 
   //import font
@@ -70,6 +78,18 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.text}>Create Issue</Text>
       </TouchableOpacity>
 
+      <Modal
+        isVisible={isModalVisible}
+        onBackdropPress={() => setModalVisible(false)}>
+        <View style={styles.ModalBackground1}>
+          {/* membuat popup header */}
+          <View style={styles.ModalBackground2}>
+            <Text style={styles.ModalHeaderText}>NOTFICATION!</Text>
+          </View>
+          <Text style={styles.ModalBodyText1}>You been assigned to:</Text>
+          <Text style={styles.ModalBodyText2}>MAWAR {'\n'}   MA01</Text>
+        </View>
+      </Modal>
     </SafeAreaView>
   );
 };
@@ -133,7 +153,42 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 15,
     marginTop: 5,
-  }
+  },
+  ModalBackground1: {
+    backgroundColor: 'white',
+    height: '50%',
+    width: '90%',
+    alignSelf: 'center',
+    borderRadius: 30,
+    overflow: 'hidden',
+    alignItems: 'center'
+  },
+  ModalBackground2: {
+    backgroundColor: 'red',
+    height: '30%',
+    width: '100%',
+    alignSelf: 'center',
+    overflow: 'hidden',
+    alignItems: 'center'
+  },
+  ModalHeaderText: {
+    fontSize: 30,
+    color: 'white',
+    marginTop: 30,
+    fontFamily: "Poppins_Bold",
+  },
+  ModalBodyText1: {
+    color: '#001133',
+    fontSize: 20,
+    fontFamily: "Poppins_Bold",
+    margin: 20
+  },
+  ModalBodyText2: {
+    color: '#001133',
+    fontSize: 30,
+    fontFamily: "Poppins_Bold"
+
+  },
 });
 
 //export home screen

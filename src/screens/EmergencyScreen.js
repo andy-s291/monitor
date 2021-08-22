@@ -10,17 +10,21 @@ import { useFonts } from 'expo-font';
 // membuat mock date variable
 var currDate = new Date();
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 // mock data
 const patients = [
   {
     name: 'Melati',
     id: 'ME02',
-    date: currDate.getDate() + "/" + currDate.getMonth() + "/" + currDate.getFullYear() + " " + currDate.getHours() + ":" + currDate.getMinutes()
+    date: currDate.getDate() + " " + monthNames[currDate.getMonth()] + " " + currDate.getFullYear() + "\n" + currDate.getHours() + ":" + currDate.getMinutes()
   },
   {
     name: 'Mawar',
     id: 'MA01',
-    date: currDate.getDate() + "/" + currDate.getMonth() + "/" + currDate.getFullYear() + " " + currDate.getHours() + ":" + currDate.getMinutes()
+    date: currDate.getDate() + " " + monthNames[currDate.getMonth()] + " " + currDate.getFullYear() + "\n" + currDate.getHours() + ":" + currDate.getMinutes()
   }
 ]
 
@@ -73,9 +77,13 @@ const EmergencyScreen = ({ navigation }) => {
             <Text style={styles.ModalHeaderText1}>Room Name</Text>
             <Text style={styles.ModalHeaderText2}>Id number</Text>
           </View>
-          <Image source={require('../../assets/warning-icon.png')} style={styles.icon} />
-          <Text style={styles.ModalBodyText1}>WARNING!</Text>
-          <Text style={styles.ModalBodyText2}>IV Fluids Almost Runs Out</Text>
+          <Text style={styles.ModalBodyText1}>NEW ROOM! </Text>
+          <Text style={styles.ModalBodyText2}>Please Input Device</Text>
+          <TouchableOpacity style={styles.button2}>
+        <Text style={styles.button_text}>
+          Input
+        </Text>
+      </TouchableOpacity>
         </View>
       </Modal>
 
@@ -175,14 +183,14 @@ const styles = StyleSheet.create({
 
   },
   ModalBodyText1: {
-    color: 'red',
+    color: '#001133',
     fontSize: 30,
-    fontFamily: "Poppins_Bold"
-
+    fontFamily: "Poppins_Bold",
+    marginTop: 20
   },
   ModalBodyText2: {
-    color: 'red',
-    fontSize: 15,
+    color: '#001133',
+    fontSize: 20,
     fontFamily: "Poppins_Bold"
 
   },
@@ -196,7 +204,24 @@ const styles = StyleSheet.create({
     height: 110,
     width: 125,
     marginTop: 20
-  }
+  },
+  button2: {
+    borderRadius: 30,
+    width: 150,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 30,
+    backgroundColor: '#002b80',
+    fontFamily: "Poppins_Bold"
+
+  },
+  button_text: {
+    color: 'white',
+    fontSize:18,
+    fontFamily: "Poppins_Bold"
+  },
 });
 
 // export emergency screen
