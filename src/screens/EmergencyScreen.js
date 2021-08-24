@@ -79,11 +79,11 @@ const EmergencyScreen = ({ navigation }) => {
           </View>
           <Text style={styles.ModalBodyText1}>NEW ROOM! </Text>
           <Text style={styles.ModalBodyText2}>Please Input Device</Text>
-          <TouchableOpacity style={styles.button2}>
-        <Text style={styles.button_text}>
-          Input
-        </Text>
-      </TouchableOpacity>
+          <TouchableOpacity style={styles.button2} onPress={() => {navigation.navigate('Input'); toggleModal();}}>
+            <Text style={styles.button_text}>
+              Input
+            </Text>
+          </TouchableOpacity>
         </View>
       </Modal>
 
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   },
   button_text: {
     color: 'white',
-    fontSize:18,
+    fontSize: 18,
     fontFamily: "Poppins_Bold"
   },
 });

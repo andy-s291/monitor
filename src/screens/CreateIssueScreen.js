@@ -137,7 +137,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     margin: 20,
     fontFamily: "Poppins_Bold"
-
   },
   picture: {
     marginLeft: 20
