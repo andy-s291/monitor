@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, FlatList, Image, TextInput, TouchableWithoutFeedback, Keyboard,  } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, FlatList, Image, TextInput, TouchableWithoutFeedback, Keyboard, } from 'react-native';
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import { useFonts } from 'expo-font';
-import Spacer from '../components/Spacer';
-// import { Picker } from '@react-native-picker/picker';
+import { Picker } from '@react-native-picker/picker';
+import { FontAwesome5 } from '@expo/vector-icons';
+
 
 const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -15,6 +16,7 @@ const DismissKeyboard = ({ children }) => (
 const InputScreen = ({ }) => {
   const [vitals, setVitals] = useState('');
   const [infuse, setInfuse] = useState('');
+  const [oxygen, setOxygen] = useState();
 
   const [loaded] = useFonts({
     Poppins_Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
@@ -51,10 +53,55 @@ const InputScreen = ({ }) => {
         </View>
         <View style={styles.row}>
           <Text style={styles.content}>Oxygen</Text>
+          <Picker
+            style={styles.picker}
+            itemStyle={styles.picker_item}
+            selectedValue={oxygen}
+            onValueChange={(itemValue, itemIndex) =>
+              setOxygen(itemValue)
+            }>
+            <Picker.Item label="01" value="1" />
+            <Picker.Item label="02" value="2" />
+            <Picker.Item label="03" value="3" />
+          </Picker>
+
         </View>
+
+        <TouchableOpacity style={styles.button2}>
+          <Text style={styles.text2}>
+            Submit
+          </Text>
+        </TouchableOpacity>
+
+        {/* Tambah logo */}
+        <Image source={require('../../assets/byonLogo.png')} style={styles.logo} />
+
       </SafeAreaView>
     </DismissKeyboard>
-  )
+  );
+};
+
+InputScreen.navigationOptions = ({ navigation }) => {
+  // header styling
+  return {
+    title: '',
+    headerStyle: {
+      backgroundColor: 'red'
+    },
+
+    // membuat button untuk balik ke home page
+    headerLeft: () => (
+      <Button
+        icon={<FontAwesome5 name="chevron-left" size={24} color="white" />}
+        title="Room Mawar MA01"
+        buttonStyle={styles.button}
+        titleStyle={styles.text}
+        type='clear'
+        onPress={() => navigation.navigate('Emergency')}
+      />
+
+    )
+  };
 };
 
 const styles = StyleSheet.create({
@@ -88,6 +135,62 @@ const styles = StyleSheet.create({
     margin: 20,
     fontFamily: "Poppins_Bold"
   },
+  picker: {
+    height: 40,
+    width: '50%',
+    borderRadius: 10,
+    backgroundColor: 'white',
+    margin: 20
+  },
+  picker_item: {
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    fontFamily: "Poppins_Regular",
+  },
+  button2: {
+    borderRadius: 30,
+    width: 175,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 80,
+    backgroundColor: '#002b80',
+    fontFamily: "Poppins_Bold"
+
+  },
+  text2: {
+    color: 'white',
+    fontSize: 20,
+    fontFamily: "Poppins_Bold"
+
+  },
+  logo: {
+    height: "5%",
+    width: "50%",
+    alignSelf: 'center',
+    bottom: -110,
+
+  },
+  button: {
+    width: '100%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    backgroundColor: 'red',
+    flexDirection: 'row',
+    marginLeft: 20,
+    marginBottom: 10
+  },
+  text: {
+    fontSize: 25,
+    marginLeft: 5,
+    color: "white",
+    fontFamily: "Poppins_Bold"
+
+  },
 })
 
-export default InputScreen
+export default InputScreen;
