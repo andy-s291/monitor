@@ -43,7 +43,7 @@ const CreateIssueScreen = ({ navigation }) => {
         />
 
         <SafeAreaView style={{ flexDirection: 'row' }}>
-          <Entypo name="attachment" size={24} color="white" style={styles.picture} />
+          <Entypo name="attachment" size={30} color="white" style={styles.picture} />
           <Text style={styles.label2}>Attachment</Text>
         </SafeAreaView>
 
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins_Bold"
   },
   picture: {
-    marginLeft: 20
+    marginLeft: 20,
   },
   header: {
     flexDirection: 'row',

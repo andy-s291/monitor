@@ -3,8 +3,8 @@ import { Text, View, StyleSheet, TouchableOpacity, FlatList, Image, TextInput, T
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import { useFonts } from 'expo-font';
-import { Picker } from '@react-native-picker/picker';
 import { FontAwesome5 } from '@expo/vector-icons';
+import RNPickerSelect from 'react-native-picker-select';
 
 
 const DismissKeyboard = ({ children }) => (
@@ -53,18 +53,17 @@ const InputScreen = ({ }) => {
         </View>
         <View style={styles.row}>
           <Text style={styles.content}>Oxygen</Text>
-          <Picker
-            style={styles.picker}
-            itemStyle={styles.picker_item}
-            selectedValue={oxygen}
-            onValueChange={(itemValue, itemIndex) =>
-              setOxygen(itemValue)
-            }>
-            <Picker.Item label="01" value="1" />
-            <Picker.Item label="02" value="2" />
-            <Picker.Item label="03" value="3" />
-          </Picker>
-
+          <View style={styles.container}>
+            <RNPickerSelect
+              placeholder={{ label: "No. device", value: null }}
+              onValueChange={(value) => setOxygen(value)}
+              items={[
+                { label: "01", value: "1" },
+                { label: "02", value: "2" },
+                { label: "03", value: "3" },
+              ]}
+            />
+          </View>
         </View>
 
         <TouchableOpacity style={styles.button2}>
@@ -148,6 +147,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     fontFamily: "Poppins_Regular",
   },
+  picker_item_android: {
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    fontFamily: "Poppins_Regular",
+  },
   button2: {
     borderRadius: 30,
     width: 175,
@@ -191,6 +196,15 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins_Bold"
 
   },
+  container : {
+    height: 40,
+    width: '50%',
+    borderRadius: 10,
+    margin:20,
+    backgroundColor : "#fff",
+    alignItems      : "center",
+    justifyContent  : "center",
+},
 })
 
 export default InputScreen;
