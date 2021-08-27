@@ -191,15 +191,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-    color: 'black',
-    fontFamily: "Poppins_Regular"
-  },
-  inputAndroid: {
-    color: 'black',
-    fontFamily: "Poppins_Regular"
-  },
-});
-
 export default InputScreen;
