@@ -16,7 +16,7 @@ const DismissKeyboard = ({ children }) => (
 const InputScreen = ({ }) => {
   const [vitals, setVitals] = useState('');
   const [infuse, setInfuse] = useState('');
-  const [oxygen, setOxygen] = useState();
+  const [oxygen, setOxygen] = useState('');
 
   const [loaded] = useFonts({
     Poppins_Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
@@ -55,6 +55,7 @@ const InputScreen = ({ }) => {
           <Text style={styles.content}>Oxygen</Text>
           <View style={styles.container}>
             <RNPickerSelect
+              style={{ inputAndroid: { color: 'black' } }}
               placeholder={{ label: "No. device", value: null }}
               onValueChange={(value) => setOxygen(value)}
               items={[
@@ -62,6 +63,9 @@ const InputScreen = ({ }) => {
                 { label: "02", value: "2" },
                 { label: "03", value: "3" },
               ]}
+              pickerProps={{
+                itemStyle: { color: "black" }
+              }}
             />
           </View>
         </View>
@@ -134,25 +138,6 @@ const styles = StyleSheet.create({
     margin: 20,
     fontFamily: "Poppins_Bold"
   },
-  picker: {
-    height: 40,
-    width: '50%',
-    borderRadius: 10,
-    backgroundColor: 'white',
-    margin: 20
-  },
-  picker_item: {
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: 'white',
-    fontFamily: "Poppins_Regular",
-  },
-  picker_item_android: {
-    height: 40,
-    borderRadius: 10,
-    backgroundColor: 'white',
-    fontFamily: "Poppins_Regular",
-  },
   button2: {
     borderRadius: 30,
     width: 175,
@@ -194,17 +179,27 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     color: "white",
     fontFamily: "Poppins_Bold"
-
   },
-  container : {
+  container: {
     height: 40,
     width: '50%',
     borderRadius: 10,
-    margin:20,
-    backgroundColor : "#fff",
-    alignItems      : "center",
-    justifyContent  : "center",
-},
-})
+    margin: 20,
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    color: 'black',
+    fontFamily: "Poppins_Regular"
+  },
+  inputAndroid: {
+    color: 'black',
+    fontFamily: "Poppins_Regular"
+  },
+});
 
 export default InputScreen;
