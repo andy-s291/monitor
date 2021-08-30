@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, FlatList, Image, TextInput, TouchableWithoutFeedback, Keyboard, } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity,Image, TextInput, TouchableWithoutFeedback, Keyboard, } from 'react-native';
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import { useFonts } from 'expo-font';
 import { FontAwesome5 } from '@expo/vector-icons';
 import RNPickerSelect from 'react-native-picker-select';
 
-
+// function untuk dismiss keyboard
 const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
     {children}
@@ -14,10 +14,12 @@ const DismissKeyboard = ({ children }) => (
 );
 
 const InputScreen = ({ }) => {
+  // buat state untuk inputbox sama dropdown
   const [vitals, setVitals] = useState('');
   const [infuse, setInfuse] = useState('');
   const [oxygen, setOxygen] = useState('');
 
+  //Load gonts
   const [loaded] = useFonts({
     Poppins_Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
     Poppins_Regular: require('../../assets/fonts/Poppins-Regular.ttf'),
@@ -30,9 +32,11 @@ const InputScreen = ({ }) => {
   return (
     <DismissKeyboard>
       <SafeAreaView style={styles.screen}>
+        {/* Tambah content */}
         <View>
           <Text style={styles.text}>Device List</Text>
         </View>
+
         <View style={styles.row}>
           <Text style={styles.content}>Vital Signs</Text>
           <TextInput
@@ -42,6 +46,7 @@ const InputScreen = ({ }) => {
             style={styles.input}
           />
         </View>
+
         <View style={styles.row}>
           <Text style={styles.content}>Infuse</Text>
           <TextInput
@@ -51,6 +56,8 @@ const InputScreen = ({ }) => {
             style={styles.input}
           />
         </View>
+
+        {/* Buat dropdown */}
         <View style={styles.row}>
           <Text style={styles.content}>Oxygen</Text>
           <View style={styles.container}>
@@ -69,7 +76,8 @@ const InputScreen = ({ }) => {
             />
           </View>
         </View>
-
+        
+        {/* Tambah button */}
         <TouchableOpacity style={styles.button2}>
           <Text style={styles.text2}>
             Submit

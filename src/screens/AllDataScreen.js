@@ -1,19 +1,20 @@
 // import React dan yang lainnya
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
-import { FontAwesome5} from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 
 // membuat mock date variable
 var currDate = new Date();
 
+//List untuk months
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
-// mock data
+//mock data untuk emergency patients
 const emergency_patients = [
   {
     name: 'Melati',
@@ -27,6 +28,7 @@ const emergency_patients = [
   }
 ]
 
+//mock data untuk patients
 const patients = [
   {
     name: 'Melati',
@@ -62,10 +64,11 @@ const AllDataScreen = ({ navigation }) => {
     return null;
   }
 
+  //function untuk check if emergency patient
   function patientExists(id) {
-    return emergency_patients.some(function(el) {
+    return emergency_patients.some(function (el) {
       return el.id === id;
-    }); 
+    });
   }
 
   return (
@@ -78,7 +81,8 @@ const AllDataScreen = ({ navigation }) => {
           return (
             <TouchableOpacity onPress={() => navigation.navigate('Show')}>
               <View style={styles.row}>
-                
+
+                {/* condition untuk display for emergency patients */}
                 {patientExists(item.id) ?
                   <Text style={styles.emergency_title}>{item.name} - {item.id}</Text>
                   : <Text style={styles.normal_title}>{item.name} - {item.id}</Text>}
@@ -86,15 +90,12 @@ const AllDataScreen = ({ navigation }) => {
                 {patientExists(item.id) ?
                   <Text style={styles.emergency_title}>{item.date}</Text>
                   : <Text style={styles.normal_title}>{item.date}</Text>}
-                {/* <Text style={styles.emergency_title}>{item.name} - {item.id}</Text>
-                <Text style={styles.emergency_title}>{item.date}</Text> */}
               </View>
             </TouchableOpacity>
           )
         }}
       />
-      
-
+      {/*Logo */}
       <Image source={require('../../assets/byonLogo.png')} style={styles.logo} />
     </SafeAreaView>
   );

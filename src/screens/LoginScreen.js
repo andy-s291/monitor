@@ -5,11 +5,13 @@ import { SafeAreaView } from 'react-navigation';
 import { useFonts } from 'expo-font';
 import Spacer from '../components/Spacer';
 
+// fucntion untuk dismiss keyboard
 const DismissKeyboard = ({ children }) => (
   <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
     {children}
   </TouchableWithoutFeedback>
 );
+
 
 const LoginScreen = ({ navigation }) => {
   const [FullName, SetFullName] = useState('');
@@ -29,12 +31,23 @@ const LoginScreen = ({ navigation }) => {
       <SafeAreaView style={styles.screen}>
         {/* Tambah logo */}
         <Image source={require('../../assets/byonLogo.png')} style={styles.logo} />
+
+        {/* Buat content */}
         <Text style={styles.text}>Full Name</Text>
-        <TextInput style={styles.input} />
+
+        <TextInput style={styles.input}
+          onChangeText={SetFullName}
+          value={FullName} />
+
         <Spacer />
         <Text style={styles.text}>Password</Text>
-        <TextInput style={styles.input} />
+
+        <TextInput style={styles.input}
+          onChangeText={SetPassword}
+          value={Password} />
+
         <Spacer />
+
         <TouchableOpacity>
           <Text style={styles.text2}>
             Forgot Password?

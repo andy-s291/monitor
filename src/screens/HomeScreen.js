@@ -10,6 +10,7 @@ import Modal from 'react-native-modal';
 // membuat component Home Screen
 const HomeScreen = ({ navigation }) => {
 
+  // Buat state untuk popup
   const [isModalVisible, setModalVisible] = useState(false);
 
   // set toggle modal
@@ -21,6 +22,7 @@ const HomeScreen = ({ navigation }) => {
   const [isEnabled, setIsEnabled] = useState(false);
   // setIsEnabled(previousState => !previousState);
 
+  // property button
   var touchProps = {
     activeOpacity: 1,
     style: isEnabled ? styles.btnPress : styles.btnNormal, // <-- but you can still apply other style changes
@@ -78,6 +80,7 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.text}>Create Issue</Text>
       </TouchableOpacity>
 
+      {/* Buat modal */}
       <Modal
         isVisible={isModalVisible}
         onBackdropPress={() => setModalVisible(false)}>

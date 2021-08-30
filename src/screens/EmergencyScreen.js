@@ -10,6 +10,7 @@ import { useFonts } from 'expo-font';
 // membuat mock date variable
 var currDate = new Date();
 
+//List untuk months
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
@@ -77,16 +78,19 @@ const EmergencyScreen = ({ navigation }) => {
             <Text style={styles.ModalHeaderText1}>Room Name</Text>
             <Text style={styles.ModalHeaderText2}>Id number</Text>
           </View>
+
           <Text style={styles.ModalBodyText1}>NEW ROOM! </Text>
           <Text style={styles.ModalBodyText2}>Please Input Device</Text>
+
           <TouchableOpacity style={styles.button2} onPress={() => {navigation.navigate('Input'); toggleModal();}}>
             <Text style={styles.button_text}>
               Input
             </Text>
           </TouchableOpacity>
+
         </View>
       </Modal>
-
+        {/* Membuat logo */}
       <Image source={require('../../assets/byonLogo.png')} style={styles.logo} />
     </SafeAreaView>
   );

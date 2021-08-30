@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, FlatList, Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
@@ -6,8 +6,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 import Spacer from '../components/Spacer';
 
-const ShowScreen = ({ navigation }) => {
-
+const ShowScreen = () => {
+  // Load fonts
   const [loaded] = useFonts({
     Poppins_Bold: require('../../assets/fonts/Poppins-Bold.ttf'),
     Poppins_Regular: require('../../assets/fonts/Poppins-Regular.ttf'),
@@ -19,6 +19,7 @@ const ShowScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.screen}>
+      {/* Buat context */}
       <View style={styles.row}>
         <Text style={styles.header}>
           Information
@@ -62,11 +63,15 @@ const ShowScreen = ({ navigation }) => {
         Infuse Condition      :  OK
       </Text>
 
+      {/* Tamabah button, tinggal tambah function */}
       <TouchableOpacity style={styles.button2}>
         <Text style={styles.button_text}>
           Request Hospital Discharge
         </Text>
       </TouchableOpacity>
+
+      <Image source={require('../../assets/byonLogo.png')} style={styles.logo} />
+
     </SafeAreaView>
   )
 }
@@ -125,7 +130,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: 80,
+    marginTop: 60,
     backgroundColor: '#002b80',
     fontFamily: "Poppins_Bold"
 
@@ -157,6 +162,12 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     marginBottom: 10
   },
+  logo: {
+    height: "5%",
+    width: "50%",
+    alignSelf: 'center',
+    marginTop: 30
+  }
 });
 
 export default ShowScreen;
